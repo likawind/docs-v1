@@ -6,10 +6,12 @@ import Script from "next/script";
 import { basename } from "path";
 import { useMemo } from "react";
 import ErrorBoundary from "../../components/ErrorBoundary";
+import Footer from "../../components/Footer/Footer";
 import GoogleAnalyticsScript from "../../components/GoogleAnalyticsScript/GoogleAnalyticsScript";
 import APIPageLayout from "../../components/PageLayouts/APIPageLayout/APIPageLayout";
 import DocsPageLayout from "../../components/PageLayouts/DocsPageLayout/DocsPageLayout";
 import { SelectOption } from "../../components/SelectDropdown/SelectDropdown";
+import TopNav from "../../components/TopNav/TopNav";
 import { API_AND_SDK_MENU_ITEMS } from "../../constants/categoriesNav.constants";
 import { PathObj } from "../../interface/common.interface";
 import {
@@ -20,7 +22,6 @@ import {
 } from "../../lib/api";
 import { configs } from "../../lib/markdoc";
 import { getFormattedPartials } from "../../utils/CommonUtils";
-import Footer from "../../components/Footer/Footer";
 
 interface Props {
   content: string;
@@ -91,9 +92,9 @@ export default function Article({
           />
         ) : (
           <DocsPageLayout
+            navbar={<TopNav versionsList={versionsList} />}
             parsedContent={parsedContent}
             slug={slug}
-            versionsList={versionsList}
             footer={<Footer />}
           />
         )}
